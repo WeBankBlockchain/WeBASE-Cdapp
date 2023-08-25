@@ -1,0 +1,61 @@
+server:
+  port: 5002
+  servlet:
+    context-path: /certapp-cert
+  tomcat:
+    # 等待队列长度
+    accept-count: 1000
+    # 最大工作线程数
+    max-threads: 500
+    # 最小工作空闲线程数
+    min-spare-threads: 100
+
+constant:
+  # 本地文件路径
+  filePath: ./files
+  signUserId: signUserIdTemp
+
+    
+spring:
+  main:
+    allow-bean-definition-overriding: true
+  datasource:
+    url: jdbc:mysql://localhost:3306/cdappDb?useUnicode=true&autoReconnect=true&characterEncoding=UTF-8&zeroDateTimeBehavior=convertToNull&connectTimeout=10000&socketTimeout=60000&allowMultiQueries=true&useFractionalSeconds=true&useUnbufferedInput=false&serverTimezone=Asia/Shanghai
+    username: "dbUsername"
+    password: "dbPassword"
+    driverClassName: com.mysql.cj.jdbc.Driver
+    type: com.alibaba.druid.pool.DruidDataSource
+    defaultAutoCommit: true
+    initialSize: 25
+    maxActive: 128
+    minIdle: 25
+    testOnBorrow: false
+    testOnReturn: false
+    testWhileIdle: true
+    validationQuery: SELECT 1
+    timeBetweenEvictionRunsMillis: 34000
+    minEvictableIdleTimeMillis: 34000
+    removeAbandoned: false
+    logAbandoned: true
+    removeAbandonedTimeout: 54
+    maxWait: 10000
+    poolPreparedStatements: false
+    connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=5000
+
+mybatis:
+  typeAliasesPackage: com.certapp
+  configuration:
+    map-underscore-to-camel-case: true
+  
+logging:
+  config: classpath:log4j2.xml
+  level:
+    com.fintech: info
+
+swagger:
+  enabled: true
+
+dappsdk:
+  appid: 'appIdTemp'
+  appKey: 'appKeyTemp'
+
